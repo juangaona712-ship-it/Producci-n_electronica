@@ -1,14 +1,20 @@
-# Documentación del Proyecto
-
-Bienvenido 👋  
-Esta es una **plantilla** basada en [MkDocs](https://www.mkdocs.org/) + [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) para cursos y proyectos.
-
+---
+hide:
+  - navigation
+  - toc
 ---
 
-## Empezar rápido (3 pasos)
+# Proyecto de Producción Electrónica
 
-1. **Edita el nombre del sitio** en `mkdocs.yml`:
-   ```yaml
-   site_name: Documentación del Curso
-   theme:
-     name: material
+Bienvenido al portal del proyecto. Aquí encontrarás todos los detalles del diseño, fabricación y pruebas de la PCB.
+
+El sitio está dividido en etapas de desarrollo para facilitar su lectura y revisión.
+
+<br>
+
+<div markdown="1" style="text-align: center;">
+
+[Ir a la Documentación ➔](resumen.md){ .md-button .md-button--primary }
+[Ver Repositorio](https://github.com/tu-usuario/tu-repo){ .md-button }
+
+</div>
