@@ -8,6 +8,21 @@ theme:
     text: Roboto
     code: JetBrains Mono
   palette:
+    # Modo claro (Estilo de la imagen: barra superior blanca y limpia, detalles azules)
+    - scheme: default
+      primary: white
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Cambiar a modo oscuro
+
+    # Modo oscuro (Mantiene el azul moderno pero descansa la vista con fondo oscuro)
+    - scheme: slate
+      primary: blue grey
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Cambiar a modo claro
     # Modo claro
     - scheme: default
       primary: red
