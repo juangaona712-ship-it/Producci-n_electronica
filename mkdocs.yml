@@ -15,7 +15,6 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: Cambiar a modo claro
-        
     - scheme: default
       primary: red
       accent: red
@@ -23,15 +22,15 @@ theme:
         icon: material/weather-night
         name: Cambiar a modo oscuro
 
-  features:
-    - navigation.tabs          # Pestañas horizontales superiores
-    - navigation.sections      # Secciones agrupadas en el menú lateral
-    - navigation.expand        # Menús desplegados por defecto
-    - navigation.top           # Botón flotante para regresar arriba
-    - navigation.instant       # Carga páginas al instante sin recarga completa
-    - content.code.copy        # Botón de copiar código
-    - content.tooltips         # Tooltips informativos
-    - toc.follow               # El índice sigue el scroll
+features:
+  - navigation.tabs
+  - navigation.sections
+  - navigation.expand
+  - navigation.top
+  - navigation.instant
+  - content.code.copy
+  - content.tooltips
+  - toc.follow
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -66,6 +65,7 @@ markdown_extensions:
 
 extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css
+
 nav:
   - Inicio: index.md
   - 📖 Documentación Técnica:
