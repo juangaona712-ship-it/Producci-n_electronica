@@ -70,6 +70,6 @@ nav:
   - Inicio: index.md
   - 📖 Documentación Técnica:
       - Resumen del Proyecto: resumen.md
-      - Esquemático: esquematico.md
+      - Esquemático: esquematico(Kid Kad).md
       - Diseño de PCB: pcb.md
       - Pruebas y Ensamble: pruebas.md
