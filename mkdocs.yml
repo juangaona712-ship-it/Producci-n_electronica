@@ -9,18 +9,18 @@ theme:
     text: Roboto
     code: JetBrains Mono
   palette:
-    # Modo oscuro (Este es el primero, así que será el modo por defecto)
+    # Modo oscuro (Mantiene el rojo y es el modo por defecto)
     - scheme: slate
-      primary: blue grey
-      accent: blue
+      primary: red
+      accent: red
       toggle:
         icon: material/weather-sunny
         name: Cambiar a modo claro
-
-    # Modo claro (Opción secundaria)
+        
+    # Modo claro 
     - scheme: default
-      primary: white
-      accent: blue
+      primary: red
+      accent: red
       toggle:
         icon: material/weather-night
         name: Cambiar a modo oscuro
