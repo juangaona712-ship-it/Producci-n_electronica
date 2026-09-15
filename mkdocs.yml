@@ -1,6 +1,6 @@
 site_name: MonoFab
 site_url: https://juangaona712-ship-it.github.io/Producci-n_electronica/
-site_description: Documentación de ingeniería y producción de hardware.
+site_description: Documentación de proyectos de la materia de producción electronica.
 
 theme:
   name: material
@@ -9,36 +9,21 @@ theme:
     text: Roboto
     code: JetBrains Mono
   palette:
-    # Modo claro (Estilo de la imagen: barra superior blanca y limpia, detalles azules)
-    - scheme: default
-      primary: white
-      accent: blue
-      toggle:
-        icon: material/weather-night
-        name: Cambiar a modo oscuro
-
-    # Modo oscuro (Mantiene el azul moderno pero descansa la vista con fondo oscuro)
+    # Modo oscuro (Este es el primero, así que será el modo por defecto)
     - scheme: slate
       primary: blue grey
       accent: blue
       toggle:
         icon: material/weather-sunny
         name: Cambiar a modo claro
-    # Modo claro
+
+    # Modo claro (Opción secundaria)
     - scheme: default
-      primary: red
-      accent: red
+      primary: white
+      accent: blue
       toggle:
         icon: material/weather-night
         name: Cambiar a modo oscuro
-
-    # Modo oscuro
-    - scheme: slate
-      primary: red
-      accent: red
-      toggle:
-        icon: material/weather-sunny
-        name: Cambiar a modo claro
 
   features:
     - navigation.tabs          # Pestañas horizontales superiores
