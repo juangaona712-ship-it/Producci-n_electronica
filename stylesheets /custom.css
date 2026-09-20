@@ -1,0 +1,245 @@
+/* =========================================
+   Estilos Personalizados - Proyecto PCB
+   ========================================= */
+
+/* =========================================
+   1. VARIABLES DE TEMA (MODO CLARO / OSCURO)
+   ========================================= */
+[data-md-color-scheme="default"] {
+    --fondo-base: #f5f5f5;
+    --grid-puntos: rgba(0, 0, 0, 0.08);
+    --cristal-fondo: rgba(255, 255, 255, 0.75);
+    --cristal-borde: rgba(0, 0, 0, 0.1);
+    --sombra-suave: rgba(0, 0, 0, 0.1);
+}
+
+[data-md-color-scheme="slate"] {
+    --fondo-base: #1a1c23;
+    --grid-puntos: rgba(255, 255, 255, 0.05);
+    --cristal-fondo: rgba(30, 33, 43, 0.6);
+    --cristal-borde: rgba(255, 255, 255, 0.1);
+    --sombra-suave: rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================
+   NUEVO: FORZAR COLOR OSCURO EN LA BARRA (Modo Claro)
+   ========================================= */
+[data-md-color-scheme="default"] .md-header {
+    color: #1a1c23 !important; /* Vuelve el texto oscuro */
+}
+[data-md-color-scheme="default"] .md-header__button,
+[data-md-color-scheme="default"] .md-header__title,
+[data-md-color-scheme="default"] .md-header__topic {
+    color: #1a1c23 !important; /* Vuelve los iconos y títulos oscuros */
+}
+
+/* =========================================
+   2. FONDO PRINCIPAL Y CUADRÍCULA KICAD
+   ========================================= */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--fondo-base) !important;
+    background-image: radial-gradient(var(--grid-puntos) 1px, transparent 1px) !important;
+    background-size: 25px 25px !important;
+    background-attachment: fixed !important;
+}
+
+/* =========================================
+   3. MARCA DE AGUA: CIRCUITO DESVANECIDO (Mitad Izquierda)
+   ========================================= */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Tu imagen de circuito */
+    background-image: url('../img/circuito-fondo-4.jpg');
+    /* La anclamos a la izquierda y hacemos que cubra el alto */
+    background-position: left center;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    /* Subimos un poco la opacidad porque se va a difuminar */
+    opacity: 0.15; 
+    z-index: -1;
+    pointer-events: none;
+    
+    /* MAGIA: Máscara que va de color sólido (izquierda) a transparente (hacia el centro) */
+    -webkit-mask-image: linear-gradient(to right, black 0%, black 20%, transparent 65%);
+    mask-image: linear-gradient(to right, black 0%, black 20%, transparent 65%);
+}
+
+/* =========================================
+   4. EFECTOS GLASSMORPHISM Y RESPIRACIÓN (Sidebar)
+   ========================================= */
+.md-header {
+    background-color: var(--cristal-fondo) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(90deg, #3f51b5, #e53935, #ff5252, #3f51b5) 1;
+}
+
+@keyframes respiracion {
+    0% { box-shadow: 0 4px 15px var(--sombra-suave); }
+    50% { box-shadow: 0 4px 25px rgba(229, 57, 53, 0.35); }
+    100% { box-shadow: 0 4px 15px var(--sombra-suave); }
+}
+
+.sidebar-glass {
+    float: right; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    padding: 12px; 
+    margin: 0 0 20px 20px; 
+    border-radius: 16px;
+    z-index: 10;
+    background: var(--cristal-fondo) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--cristal-borde);
+    animation: respiracion 4s infinite ease-in-out;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-glass:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(229, 57, 53, 0.5) !important; 
+}
+.sidebar-glass img {
+    transition: transform 0.2s;
+}
+.sidebar-glass img:hover {
+    transform: scale(1.15);
+}
+
+/* =========================================
+   5. TARJETAS 3D Y EFECTO HOVER
+   ========================================= */
+.md-typeset .grid.cards > ul > li {
+    background: var(--cristal-fondo) !important;
+    border-top: 4px solid var(--md-primary-fg-color);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px var(--sombra-suave);
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(229, 57, 53, 0.25); /* Brillo rojo tenue en las cartas */
+    border-top: 4px solid #e53935;
+}
+
+/* =========================================
+   6. TÍTULOS Y TEXTOS
+   ========================================= */
+h1 {
+    background: linear-gradient(90deg, #ff5252, #f57c00, #ff5252);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradientText 5s linear infinite;
+    font-weight: 800;
+}
+
+@keyframes gradientText {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+.md-typeset h1 {
+    text-align: center;
+    font-weight: 900 !important; 
+    font-size: 2.5em !important; 
+    letter-spacing: -0.05em;     
+    margin-bottom: 1em;
+}
+
+.md-typeset h2 {
+    font-weight: 800 !important; 
+    font-size: 1.8em !important;
+    border-bottom: 2px solid var(--md-primary-fg-color); 
+    padding-bottom: 0.3em;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+}
+
+/* =========================================
+   7. BOTÓN DE DESCARGA
+   ========================================= */
+.md-typeset .btn-descarga {
+    background: linear-gradient(90deg, #e53935, #ff5252) !important;
+    color: white !important;
+    padding: 12px 28px !important;
+    border-radius: 30px !important;
+    text-decoration: none !important;
+    font-weight: 800 !important;
+    display: inline-block !important;
+    box-shadow: 0 4px 15px rgba(229, 57, 53, 0.4) !important;
+    transition: all 0.3s ease !important;
+}
+
+.md-typeset .btn-descarga:hover {
+    background: linear-gradient(90deg, #ff5252, #e53935) !important;
+    box-shadow: 0 6px 20px rgba(229, 57, 53, 0.6) !important;
+    transform: scale(1.05) !important;
+}
+
+/* =========================================
+   8. COMPONENTES VARIOS (Bordes, Fotos y Scrollbar)
+   ========================================= */
+.md-typeset .admonition,
+.md-typeset pre,
+.md-typeset code {
+    border-radius: 10px;
+    border: 1px solid var(--cristal-borde);
+    box-shadow: 0 4px 20px var(--sombra-suave);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--fondo-base);
+}
+::-webkit-scrollbar-thumb {
+    background: #e53935;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ff5252;
+}
+
+.md-typeset p > img {
+    display: block !important;
+    margin: 0 auto !important; 
+    max-width: 85% !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(128, 128, 128, 0.2) !important;
+}
+
+.md-typeset p:has(img) > em {
+    display: block !important;
+    text-align: center !important;
+    color: var(--md-default-fg-color--light) !important;
+    margin-top: 10px !important;
+    margin-bottom: 30px !important;
+    font-size: 0.9em !important;
+}
+
+.foto-equipo {
+    width: 160px !important;
+    height: 160px !important;
+    object-fit: cover !important; 
+    object-position: center !important; 
+    border-radius: 50% !important; 
+    border: 2px solid #e53935; 
+    box-shadow: 0 0 20px rgba(229, 57, 53, 0.4); 
+    display: block;
+    margin: 0 auto 15px auto; 
+}

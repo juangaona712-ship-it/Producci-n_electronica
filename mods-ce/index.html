@@ -1,0 +1,1179 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación técnica del diseño y ruteo de circuito impreso.">
+      
+      
+        <meta name="author" content="Tu Nombre">
+      
+      
+      
+        <link rel="prev" href="../editor-placas/">
+      
+      
+        <link rel="next" href="../recursos/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../material/developer-board">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>3. Mods CE y Ajustes - Diseño de PCB - Proyecto KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Montserrat";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-manufactura-cam-y-generacion-de-trayectorias-mods-ce" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Diseño de PCB - Proyecto KiCad" class="md-header__button md-logo" aria-label="Diseño de PCB - Proyecto KiCad" data-md-component="logo">
+      
+  <img src="../material/memory" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Diseño de PCB - Proyecto KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. Mods CE y Ajustes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Mrlogros/Produccionb-Electronica" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Mrlogros/Produccionb-Electronica
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../esquematico/" class="md-tabs__link">
+          
+  
+  
+  Desarrollo de PCB
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../recursos/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Referencias
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Diseño de PCB - Proyecto KiCad" class="md-nav__button md-logo" aria-label="Diseño de PCB - Proyecto KiCad" data-md-component="logo">
+      
+  <img src="../material/memory" alt="logo">
+
+    </a>
+    Diseño de PCB - Proyecto KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Mrlogros/Produccionb-Electronica" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Mrlogros/Produccionb-Electronica
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desarrollo de PCB
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Desarrollo de PCB
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../esquematico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Diseño del Esquemático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor-placas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Editor de Placas (Layout)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Mods CE y Ajustes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Mods CE y Ajustes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-exportacion-vectorial-desde-kicad-archivos-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Exportación Vectorial desde KiCad (Archivos Base)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-acceso-y-configuracion-del-entorno-mods-ce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Acceso y Configuración del Entorno Mods CE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-configuracion-de-pistas-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Configuración de Pistas (Traces)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Configuración de Pistas (Traces)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ajuste-de-pasadas-offsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ajuste de Pasadas (Offsets)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-visualizacion-y-renderizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Visualización y Renderizado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-origen-y-velocidad-nodo-srm-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Origen y Velocidad (Nodo SRM-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-guardado-y-organizacion-de-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Guardado y Organización de Archivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucion-de-problemas-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Solución de Problemas Frecuentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-configuracion-de-perforaciones-drills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Configuración de Perforaciones (Drills)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7 Configuración de Perforaciones (Drills)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-criticos-y-guardado-perforaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parámetros Críticos y Guardado (Perforaciones)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-configuracion-del-corte-de-contorno-cutout-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Configuración del Corte de Contorno (Cutout / Edge)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.8 Configuración del Corte de Contorno (Cutout / Edge)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verificacion-y-exportacion-del-contorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación y Exportación del Contorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#39-instalacion-del-software-de-control-vpanel-para-srm-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 Instalación del Software de Control (VPanel para SRM-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="3-manufactura-cam-y-generacion-de-trayectorias-mods-ce">3. Manufactura CAM y Generación de Trayectorias (Mods CE)</h1>
+<div class="admonition abstract">
+<p class="admonition-title">Objetivo de esta fase</p>
+<p>Una vez validados los diseños y generados los archivos de las capas de nuestra placa en KiCad, es necesario "traducirlos" a un formato de trayectorias espaciales (G-Code/Toolpaths) que la fresadora CNC <strong>Roland Monofab (SRM-20)</strong> pueda interpretar para realizar el corte y desgaste físico del cobre.
+Para realizar esta conversión utilizaremos <strong>Mods CE</strong> (Community Edition), una plataforma basada en navegador e ideal para la generación de trayectorias de fresado de PCBs mediante un sistema de nodos.</p>
+</div>
+<hr />
+<h2 id="31-exportacion-vectorial-desde-kicad-archivos-base">3.1 Exportación Vectorial desde KiCad (Archivos Base)</h2>
+<p>El proceso comienza aislando y exportando las capas necesarias desde el editor de KiCad en formato vectorial (<code>.svg</code>). </p>
+<p>Para que la máquina pueda saber qué hacer, es necesario seguir estos pasos: primero, una vez que tenemos nuestra placa terminada, nos dirigimos al menú superior y seleccionamos la ruta <strong><code>Archivo &gt; Salidas de fabricación &gt; Gerbers...</code></strong>. Esta herramienta nos permite compilar la geometría de la PCB.</p>
+<p><img alt="Menú Salidas de Fabricación" src="img/fotos_mods/Imagen42.jpg" />
+<em>Figura 3.1: Acceso al módulo de exportación de archivos de fabricación.</em></p>
+<p>En la ventana de trazado, el formato predeterminado suele ser Gerber. Debemos abrir el menú desplegable en la parte superior izquierda.</p>
+<p><img alt="Formato Gerber por defecto" src="img/fotos_mods/Imagen43.jpg" />
+<em>Figura 3.2: Selección del menú de formatos de trazado.</em></p>
+<p>Cambiamos el formato de trazado estrictamente a <strong>SVG</strong>. A diferencia de los archivos Gerber tradicionales, el formato SVG (Scalable Vector Graphics) genera imágenes monocromáticas de alto contraste que Mods CE utiliza para calcular las operaciones de desgaste de cobre.</p>
+<p>Ahora en la flecha verde (columna izquierda) seleccionamos solo las capas que utilizaremos (pistas y cortes de borde). La opción que está señalada por la flecha azul (<strong>"Comprobar relleno de zonas antes de trazar"</strong>) es necesario activarla obligatoriamente para garantizar la integridad de los planos de tierra. Al final le picamos "Trazar".</p>
+<p><img alt="Configuración de trazado SVG" src="img/fotos_mods/Imagen44.jpg" />
+<em>Figura 3.3: Ajuste de parámetros vectoriales y selección de capas a exportar.</em></p>
+<p>Los archivos estarán guardados en formato Microsoft Edge documents (o el navegador por defecto), con la extensión en SVG. Debemos tener listos los archivos correspondientes a las <strong>pistas</strong>, <strong>perforaciones</strong>, <strong>bordes</strong> y <strong>etiquetas</strong> (opcional).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Archivos Exportados Localmente</th>
+<th style="text-align: center;">Archivos Base Listos para Mods CE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Archivos exportados" src="img/fotos_mods/Imagen45.jpg" /></td>
+<td style="text-align: center;"><img alt="Archivos SVG exportados" src="img/Imagen%2054.png" /></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="32-acceso-y-configuracion-del-entorno-mods-ce">3.2 Acceso y Configuración del Entorno Mods CE</h2>
+<p>Para configurar nuestro espacio de trabajo CAM, seguimos esta ruta de inicialización:</p>
+<ol>
+<li>Ingresamos a nuestro navegador y realizamos la búsqueda de <strong>"mod ce"</strong> o entramos a la página oficial <a href="https://modsproject.org">Mods CE</a>.</li>
+</ol>
+<p><img alt="Búsqueda Mods CE" src="img/fotos_mods/Imagen46.jpg" />
+<em>Figura 3.4: Búsqueda del entorno de procesamiento modular.</em></p>
+<ol>
+<li>En la interfaz principal (identificable por el logo de la carita feliz en la pestaña), hacemos clic derecho o buscamos el menú de opciones en la esquina superior izquierda para abrir los <strong>Programs</strong>.</li>
+<li>En la barra de búsqueda tecleamos "sr" para filtrar las máquinas, navegamos hacia la sección de máquinas Roland y seleccionamos la opción <strong><code>mill 2D PCB</code></strong> (señalada por la flecha roja).</li>
+</ol>
+<p><img alt="Selección de programa CAM" src="img/fotos_mods/Imagen47.jpg" />
+<em>Figura 3.5: Selección del algoritmo de ruteo 2D para la máquina Roland SRM-20.</em></p>
+<div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+<p><img alt="Paso 55" src="img/Imagen%2055.png" width="30%" />
+<img alt="Paso 56" src="img/Imagen%2056.png" width="30%" />
+<img alt="Paso 57" src="img/Imagen%2057.png" width="30%" /></p>
+</div>
+<p>Al cargar el programa, se desplegará una red de nodos interconectados (diagrama de flujo de datos) que procesarán nuestro archivo desde el SVG hasta el archivo de corte de la máquina. El paso siguiente es venir al primer apartado (nodo raíz) para seleccionar el archivo.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nodo Raíz de Inserción</th>
+<th style="text-align: center;">Entorno Completo de Nodos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Nodo inicial de Mods CE" src="img/fotos_mods/Imagen48.jpg" /></td>
+<td style="text-align: center;"><img alt="Entorno de nodos de Mods CE" src="img/Imagen%2058.png" /></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="33-configuracion-de-pistas-traces">3.3 Configuración de Pistas (Traces)</h2>
+<p>Comenzaremos procesando el archivo de las pistas (<code>Pistas.svg</code>). En el nodo de entrada <code>Roland Monofab PCB</code>, seleccionamos y cargamos nuestro archivo SVG.</p>
+<p><img alt="Archivo SVG cargado" src="img/fotos_mods/Imagen49.jpg" />
+<em>Figura 3.6: Geometría de las pistas importada exitosamente al entorno CAM.</em></p>
+<p>Ahora damos clic en el botón <strong><code>invert</code></strong>. Esto es un paso técnico crítico: le indica a la máquina que el objetivo es realizar un fresado de aislamiento (remover el cobre <em>alrededor</em> de los vectores) y no taladrar sobre las líneas de la pista, lo cual destruiría nuestro circuito.</p>
+<p><img alt="Inversión de vectores" src="img/fotos_mods/Imagen50.jpg" />
+<em>Figura 3.7: Proceso de inversión lógica para ruteo de aislamiento.</em></p>
+<p>A continuación, configuramos los parámetros de la herramienta física:</p>
+<div class="admonition tip">
+<p class="admonition-title">Parámetros de la Broca</p>
+<p>Para el fresado de las pistas utilizaremos una broca plana estándar. En el nodo de configuración (<em>set PCB defaults</em>), bajamos un poco en la página, damos clic donde señala la flecha azul (para cambiar a mm) y escogemos la opción <strong><code>0.40mm flat</code></strong> señalada por la flecha roja (lo que equivale aproximadamente a 1/64 de pulgada).</p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Selección de Herramienta</th>
+<th style="text-align: center;">Parámetros del Nodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Selección de fresa de ruteo" src="img/fotos_mods/Imagen51.jpg" /></td>
+<td style="text-align: center;"><img alt="Configuración de herramienta" src="img/Imagen%2059.png" /></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ajuste-de-pasadas-offsets">Ajuste de Pasadas (Offsets)</h3>
+<p>En el nodo <strong>mill raster 2D</strong>, definiremos cuánto material queremos remover alrededor de cada pista:
+*   <strong>Offset number:</strong> Lo configuramos en <code>2</code>. Esto indica que el taladro realizará dos pasadas concéntricas alrededor de las pistas para asegurar un aislamiento adecuado, ajustado a este valor para evitar problemas técnicos de ruteo.
+*   Una vez configurado, hacemos clic en el botón <strong>Calculate</strong>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nodo General</th>
+<th style="text-align: center;">Cálculo de Trayectorias</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Configuración general" src="img/fotos_mods/Imagen52.jpg" /></td>
+<td style="text-align: center;"><img alt="Cálculo de trayectorias" src="img/Imagen%2060.png" /></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="34-visualizacion-y-renderizado">3.4 Visualización y Renderizado</h2>
+<p>Al presionar <em>Calculate</em>, Mods CE generará visualmente el trazado de las rutas de corte de la herramienta (toolpath). </p>
+<p><img alt="Plano de trayectorias 2D" src="img/Imagen%2061.png" /></p>
+<p>Podemos hacer clic en el botón <strong>View</strong> para obtener un renderizado 3D de cómo quedará la placa físicamente. </p>
+<div class="admonition warning">
+<p class="admonition-title">Interpretación del Renderizado</p>
+<p>En el renderizado 3D, <strong>el área oscura representa el cobre que será removido</strong> por la fresadora, mientras que el área clara e intacta representa nuestras pistas y pads eléctricos. </p>
+</div>
+<p><img alt="Renderizado 3D de la placa" src="img/Imagen%2062.png" /></p>
+<hr />
+<h2 id="35-origen-y-velocidad-nodo-srm-20">3.5 Origen y Velocidad (Nodo SRM-20)</h2>
+<p>El paso final antes de exportar el archivo es configurar los parámetros físicos y la cinemática de la máquina en el nodo final <strong>Roland SRM-20 milling machine</strong>:</p>
+<ul>
+<li><strong>Speed (Velocidad):</strong> Ajustamos la velocidad de fresado a <strong>4 mm/s</strong> para evitar rupturas en la broca y asegurar cortes limpios en las pistas.</li>
+<li><strong>Origin (Origen de coordenadas):</strong> El siguiente paso es definir los ejes y escribiremos <strong>0</strong> en los 3 ejes (<strong>X: 0, Y: 0, Z: 0</strong>) donde se señala con las flechas rojas para la fabricación de una placa individual principal.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Optimización de Material (Multipanel)</p>
+<p>Es importante saber que si queremos agregar otra placa para imprimir (panelización), solo modificamos el eje de las X, con un margen de 2 mm extra para que se hagan adecuadamente los bordes perimetrales sin chocar.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Origen 0,0,0 (Detalle)</th>
+<th style="text-align: center;">Configuración final de máquina</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Configuración de ejes y velocidades" src="img/fotos_mods/Imagen53.jpg" /></td>
+<td style="text-align: center;"><img alt="Configuración final de máquina" src="img/Imagen%2063.png" /></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="36-guardado-y-organizacion-de-archivos">3.6 Guardado y Organización de Archivos</h2>
+<p>Para finalizar con el primer documento, nos dirigimos a este apartado de cálculo, confirmamos que todo esté en orden, nos vamos al final de la página (al último nodo) y le picamos al botón <strong><code>save file</code></strong>. El navegador descargará automáticamente un archivo con la extensión <code>.rml</code> (Roland Machine Language). </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Confirmación de Cálculo</th>
+<th style="text-align: center;">Botón Save File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Cálculo de rutas de herramienta" src="img/fotos_mods/Imagen54.jpg" /></td>
+<td style="text-align: center;"><img alt="Guardado del archivo de manufactura" src="img/fotos_mods/Imagen55.jpg" /></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">Importante: Renombrar los archivos</p>
+<p>Por defecto, Mods CE guarda todos los archivos bajo el nombre genérico <code>SVG image.rml</code>. Es <strong>crucial</strong> ubicar el archivo descargado inmediatamente y renombrarlo (por ejemplo, a <code>1_Pistas.rml</code>) para mantener una organización estricta y evitar confusiones fatales al momento de operar la fresadora.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Botón Save File (Detalle)</th>
+<th style="text-align: center;">Archivo Descargado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Paso 64" src="img/Imagen%2064.png" /></td>
+<td style="text-align: center;"><img alt="Paso 65" src="img/Imagen%2065.png" /></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Archivos RML exportados" src="img/fotos_mods/Imagen56.jpg" />
+<em>Figura 3.8: Archivos RML listos y renombrados correctamente en el directorio.</em></p>
+<hr />
+<h2 id="solucion-de-problemas-frecuentes">🛠️ Solución de Problemas Frecuentes</h2>
+<p>Durante el procesamiento de las pistas, pueden surgir un par de complicaciones comunes que tienen solución rápida:</p>
+<ol>
+<li><strong>Áreas de corte invertidas:</strong> Si al ver el renderizado 3D notas que la máquina cortará el cobre que querías conservar (dejando expuesto lo que querías quitar), dirígete al nodo <strong>convert SVG image</strong> y haz clic en el botón <strong>invert</strong>. Esto corregirá la polaridad de la imagen.</li>
+<li><strong>Errores en el contorno:</strong> Si la placa presenta bordes irregulares o el SVG no fue interpretado correctamente desde KiCad, la mejor práctica es abrir el archivo original en <strong>Inkscape</strong> para corregir y unificar los vectores antes de subirlo a Mods CE.</li>
+</ol>
+<p><img alt="Error contorno" src="img/Imagen%2066.png" /></p>
+<hr />
+<h2 id="37-configuracion-de-perforaciones-drills">3.7 Configuración de Perforaciones (Drills)</h2>
+<p>Una vez asegurado el archivo de las pistas, repetiremos el proceso para las perforaciones cargando el archivo <code>Perforaciones.svg</code>. La lógica de los nodos es idéntica, pero los parámetros de corte cambian.</p>
+<ol>
+<li><strong>Herramienta:</strong> En el nodo <em>set PCB defaults</em>, la punta depende de la capa. Para perforación usamos <strong>0.79mm drill</strong> (que corresponde a nuestra broca de 0.8 mm).</li>
+<li><strong>Pasadas (Offsets):</strong> En el nodo de cálculo (<em>mill raster 2D</em>), configuramos el <strong>offset number</strong> en <code>1</code>. A diferencia de las pistas, aquí solo necesitamos que la broca baje exactamente en el centro una sola vez por cada agujero.</li>
+<li>Hacemos clic en <strong>Calculate</strong> y luego en <strong>View</strong> para verificar que la posición de los agujeros coincida perfectamente con los pads de nuestro diseño.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Carga de Perforaciones</th>
+<th style="text-align: center;">Selección de Herramienta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Paso 67" src="img/Imagen%2067.png" /></td>
+<td style="text-align: center;"><img alt="Paso 68" src="img/Imagen%2068.png" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Ajuste de Offsets</th>
+<th style="text-align: center;">Cálculo de Rutas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Paso 69" src="img/Imagen%2069.png" /></td>
+<td style="text-align: center;"><img alt="Paso 70" src="img/Imagen%2070.png" /></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Render Perforaciones" src="img/Imagen%2071.png" />
+<em>Renderizado 3D de las perforaciones calculadas.</em></p>
+<h3 id="parametros-criticos-y-guardado-perforaciones">Parámetros Críticos y Guardado (Perforaciones)</h3>
+<div class="admonition danger">
+<p class="admonition-title">Velocidad de Corte Crítica (Speed)</p>
+<p>En el nodo final <strong>Roland SRM-20 milling machine</strong>, la velocidad aparte cambia en perforaciones. La punta es sumamente delicada; es <strong>obligatorio reducir la velocidad a <code>0.3 mm/s</code></strong>. Las brocas de perforación de 0.8 mm son extremadamente frágiles; si la máquina intenta taladrar muy rápido o entra al material de forma inestable, la broca se romperá instantáneamente.</p>
+</div>
+<p>En este mismo nodo, podemos observar el tiempo estimado de trabajo (<em>Estimated time</em>) en la parte inferior, lo cual es muy útil para planificar el uso de la máquina en el laboratorio. Finalmente, nos dirigimos al nodo <strong>save file</strong>, hacemos clic para descargar, y renombramos inmediatamente este nuevo archivo (por ejemplo, a <code>2_Perforaciones.rml</code>).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Ajuste a 0.3 mm/s</th>
+<th style="text-align: center;">Guardado de Perforaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Paso 72" src="img/Imagen%2072.png" /></td>
+<td style="text-align: center;"><img alt="Paso 73" src="img/Imagen%2073.png" /></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="38-configuracion-del-corte-de-contorno-cutout-edge">3.8 Configuración del Corte de Contorno (Cutout / Edge)</h2>
+<p>Para realizar el corte perimetral que separará la placa del material base, cargamos el archivo vectorizado del contorno (por ejemplo, <code>Bordes.svg</code>).</p>
+<ol>
+<li><strong>Carga del archivo:</strong> En el nodo <strong>read SVG</strong>, seleccionamos el archivo <code>Bordes.svg</code>.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Carga de SVG de Bordes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Carga del archivo de bordes" src="img/Imagen%2074.png" /></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>Ajuste del diámetro de herramienta (Manual):</strong> En el nodo <strong>set PCB defaults</strong>, observaremos que en la sección <em>Cutout</em> la opción predeterminada de mayor diámetro es <code>1.59mm cutout</code>. Dado que utilizaremos una fresa más gruesa, seleccionamos la opción <em>1.59 custom</em> y modificamos manualmente el campo <strong>diameter (mm)</strong> escribiendo <strong><code>1.9</code></strong> o <strong><code>2.0</code></strong> (o ajustando el parámetro equivalente dentro del nodo de cálculo).</li>
+<li><strong>Pasadas (Offsets):</strong> Mantenemos el parámetro <strong>offsets</strong> en <code>1</code> para realizar un único trazo perimetral alrededor de la placa. La velocidad la regresamos a <strong>4 mm/s</strong>.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Parámetros PCB y Ajuste Manual</th>
+<th style="text-align: center;">Cálculo de Trayectoria de Borde</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Configuración de diámetro y pasadas" src="img/Imagen%2075.png" /></td>
+<td style="text-align: center;"><img alt="Parámetros de cálculo del contorno" src="img/Imagen%2076.png" /></td>
+</tr>
+</tbody>
+</table>
+<h3 id="verificacion-y-exportacion-del-contorno">Verificación y Exportación del Contorno</h3>
+<ol>
+<li><strong>Cálculo de la trayectoria:</strong> En el nodo <strong>mill raster 2D</strong>, hacemos clic en <strong>Calculate</strong> para generar el código de corte.</li>
+<li><strong>Visualización y Renderizado:</strong> Presionamos <strong>View</strong> para inspeccionar la trayectoria en 2D y verificar la simulación 3D de la placa recortada.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Vista 2D del Contorno</th>
+<th style="text-align: center;">Renderizado 3D de Recorte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Trayectoria 2D del contorno" src="img/Imagen%2077.png" /></td>
+<td style="text-align: center;"><img alt="Renderizado 3D del corte de contorno" src="img/Imagen%2078.png" /></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>Parámetros de máquina y guardado:</strong> Verificamos el tiempo estimado de trabajo en el nodo <strong>Roland SRM-20 milling machine</strong> y procedemos a descargar el archivo generado desde el nodo <strong>save file</strong>.</li>
+<li><strong>Organización:</strong> Renombramos inmediatamente el archivo descargado a <code>3_Contorno.rml</code>. Para finalizar, aplicamos los mismos cambios y revisiones a los 3 documentos generados.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Ajustes de Máquina</th>
+<th style="text-align: center;">Archivo Generado RML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Parámetros finales y tiempo estimado" src="img/Imagen%2079.png" /></td>
+<td style="text-align: center;"><img alt="Descarga del archivo RML de contorno" src="img/Imagen%2080.png" /></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="39-instalacion-del-software-de-control-vpanel-para-srm-20">3.9 Instalación del Software de Control (VPanel para SRM-20)</h2>
+<p>Una vez generados los tres archivos de trabajo (<code>.rml</code>), es necesario instalar el software del fabricante para controlar la fresadora Roland SRM-20 y enviar las instrucciones de mecanizado.</p>
+<ol>
+<li><strong>Enlace de descarga:</strong> Dirígete a la página de inicio del proyecto/documentación y haz clic en el icono con la imagen de la fresadora SRM-20.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Acceso Directo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Acceso a descarga de software" src="img/Imagen%2082.png" /></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>Centro de descargas:</strong> Al abrirse el <em>Download Center</em> de Roland / DGSHAPE, selecciona el modelo <strong>monoFab SRM-20</strong> y dirígete a la pestaña de <strong>Software</strong>. Busca en la lista el programa <strong>VPanel for SRM-20</strong>.</li>
+<li><strong>Licencia y descarga:</strong> Acepta los términos del contrato de licencia haciendo clic en el botón <strong>Agree</strong> para iniciar la descarga del instalador ejecutable.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Portal de Descargas Oficial</th>
+<th style="text-align: center;">Contrato de Licencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Centro de descargas de Roland SRM-20" src="img/Imagen%2083.png" /></td>
+<td style="text-align: center;"><img alt="Aceptación de la licencia de VPanel" src="img/Imagen%2084.png" /></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
