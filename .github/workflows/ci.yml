@@ -1,4 +1,4 @@
-name: Juan Manuel Gaona Serrano
+name: ci
 on:
   push:
     branches:
